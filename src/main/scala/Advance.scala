@@ -50,14 +50,34 @@ object Advance extends App {
     println("I have computed a value")
     123
   })
+  var afuture = Future {
+    print("loading..l")
+    Thread.sleep(1000)
+    println("completed a task")
+    67
+  }
   // future is a collection which contains a value when its evaulted 
-  // future is composable with map, flatmap and filter 
+  // future is composable with map, flatmap and filter
+  // monads -> some sort of collection
+
+//
 
   /**
    * Implicitis basic 
    */
-  // 1. implicit arguments 
-  
+  // 1. implicit arguments
+  def aMethodWithImplicitArgs(implicit arg: Int) = arg +1
+
+  implicit val abc: Int = 46
+  println(aMethodWithImplicitArgs) //aMethodWithImplicitArgs(myImplicitInt)
+
+  // 2.implicit conversions
+  implicit class MyRichInteger(n:Int) {
+    def isEven() = n%2 ==0
+  }
+  println(23.isEven()) // new MyRichInteger(23).isEven()
+  // use this careful.
+  // as part of the upgrade scala3, the extension intead
 
 
 
